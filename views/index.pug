@@ -1,0 +1,9 @@
+extends layout.pug
+
+block content
+  div.container.pt-5
+    h1.display-2 Fix My Stop API
+    p.lead A REST API built by Melody Reebs as a final project for CS 493 at Oregon State University.
+    p Clicking the button below will provide you with the required credentials to use the API. You will be asked to authorize access to your Google account. Then you will be provided with a JSON Web Token (JWT) that can be used to make requests to the API.
+    p Note that you will be asked for a new authorization every time you make a new request from this page.
+    a.btn.btn-primary.btn-lg(href='/auth', role='button') Click here
