@@ -77,6 +77,202 @@ async function verify(req, res, next) {
 }
 
 
+/* 
+ * STOP REQUESTS
+ */
+
+// Create a new stop
+app.post('/stops', (req, res, next) => {
+	model.createStop(req.body, (err, entity, code) => {
+		if (err) {
+			res.status(code)
+				.set({ "Content-Type": "application/json" })
+				.send(err);
+		} else if (!req.accepts('json')) {
+			let err = { "Error": "Requested content format is not supported or was not provided in the request object" };
+			res.status(406)
+				.set({ "Content-Type": "application/json" })
+				.send(err);
+		} else {
+			entity.self = req.protocol + '://' + req.headers.host + '/stops/' + entity.id;
+			res.status(code)
+				.set({
+					"Content-Type": "application/json",
+					"Content-Location": entity.self
+				})
+				.send(entity);
+		}
+	});
+});
+
+// List all stops
+app.get('/stops', (req, res, next) => {
+	model.listStops(req, (err, entities, nextId) => {
+		if (err) {
+			res.status(404)
+				.set({ "Content-Type": "application/json" })
+				.send(err);
+		} else if (!req.accepts('json')) {
+			let err = { "Error": "Requested content format is not supported or was not provided in the request object" };
+			res.status(406)
+				.set({ "Content-Type": "application/json" })
+				.send(err);
+		} else {
+			entities.forEach(e => {
+				e.self = req.protocol + '://' + req.headers.host + '/stops/' + e.id;
+				e.issues.forEach(i => {
+					i.self = req.protocol + '://' + req.headers.host + '/issues/' + i.id;
+				});
+			});
+			let response = { "results": entities };
+			if (nextId) {
+				response.next = req.protocol + '://' + req.headers.host + '/stops?cursor=' + nextId;
+			}
+			res.status(200)
+				.set({ "Content-Type": "application/json" })
+				.send(response);
+		}
+	});
+});
+
+// Put all stops 405 error
+app.put('/stops', (req, res, next) => {
+	let err = { "Error": "URL does not support a PUT request" };
+	res.status(405)
+		.set({ 
+			"Content-Type": "application/json",
+			"Allow": "GET, POST"
+		})
+		.send(err);
+});
+
+// Patch all stops 405 error
+app.patch('/stops', (req, res, next) => {
+	let err = { "Error": "URL does not support a PATCH request" };
+	res.status(405)
+		.set({ 
+			"Content-Type": "application/json",
+			"Allow": "GET, POST"
+		})
+		.send(err);
+});
+
+// Delete all stops 405 error
+app.delete('/stops', (req, res, next) => {
+	let err = { "Error": "URL does not support a DELETE request" };
+	res.status(405)
+		.set({ 
+			"Content-Type": "application/json",
+			"Allow": "GET, POST"
+		})
+		.send(err);
+});
+
+// Get a stop
+app.get('/stops/:stop_id', (req, res, next) => {
+	model.getStop(req.params.stop_id, (err, entity) => {
+		if (err) {
+			res.status(404)
+				.set({ "Content-Type": "application/json" })
+				.send(err);
+		} else if (!req.accepts('json')) {
+			let err = { "Error": "Requested content format is not supported or was not provided in the request object" };
+			res.status(406)
+				.set({ "Content-Type": "application/json" })
+				.send(err);
+		} else {
+			entity.self = req.protocol + '://' + req.headers.host + '/stops/' + entity.id;
+			entity.issues.forEach(i => {
+				i.self = req.protocol + '://' + req.headers.host + '/issues/' + i.id;
+			});
+			res.status(200)
+				.set({ "Content-Type": "application/json" })
+				.send(entity);
+		}
+	});
+});
+
+// Replace a stop
+app.put('/stops/:stop_id', (req, res, next) => {
+	model.replaceStop(req.params.stop_id, req.body, (err, entity, code) => {
+		if (err) {
+			res.status(code)
+				.set({ "Content-Type": "application/json" })
+				.send(err);
+		} else if (!req.accepts('json')) {
+			let err = { "Error": "Requested content format is not supported or was not provided in the request object" };
+			res.status(406)
+				.set({ "Content-Type": "application/json" })
+				.send(err);
+		} else {
+			entity.self = req.protocol + '://' + req.headers.host + '/stops/' + entity.id;
+			entity.issues.forEach(i => {
+				i.self = req.protocol + '://' + req.headers.host + '/issues/' + i.id;
+			});
+			res.status(code)
+				.set({
+					"Content-Type": "application/json",
+					"Content-Location": entity.self
+				})
+				.send(entity);
+		}
+	});
+});
+
+// Update a stop
+app.patch('/stops/:stop_id', (req, res, next) => {
+	model.updateStop(req.params.stop_id, req.body, (err, entity, code) => {
+		if (err) {
+			res.status(code)
+				.set({ "Content-Type": "application/json" })
+				.send(err);
+		} else if (!req.accepts('json')) {
+			let err = { "Error": "Requested content format is not supported or was not provided in the request object" };
+			res.status(406)
+				.set({ "Content-Type": "application/json" })
+				.send(err);
+		} else {
+			entity.self = req.protocol + '://' + req.headers.host + '/stops/' + entity.id;
+			entity.issues.forEach(i => {
+				i.self = req.protocol + '://' + req.headers.host + '/issues/' + i.id;
+			});
+			res.status(code)
+				.set({
+					"Content-Type": "application/json",
+					"Content-Location": entity.self
+				})
+				.send(entity);
+		}
+	});
+});
+
+// Delete a stop
+app.delete('/stops/:stop_id', (req, res, next) => {
+	model.deleteStop(req.params.stop_id, err => {
+		if (err) {
+			res.status(404)
+				.set({ "Content-Type": "application/json" })
+				.send(err);
+		} else {
+			res.status(204)
+				.set({ "Content-Type": "application/json" })
+				.send();
+		}
+	});
+});
+
+// Post stop 405 error
+app.post('/stops/:stop_id', (req, res, next) => {
+	let err = { "Error": "URL does not support a POST request" };
+	res.status(405)
+		.set({ 
+			"Content-Type": "application/json",
+			"Allow": "GET, PUT, PATCH, DELETE"
+		})
+		.send(err);
+});
+
+
 // Listen to the App Engine-specific port, or 8080 otherwise
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
