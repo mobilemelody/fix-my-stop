@@ -1,0 +1,8 @@
+extends layout.pug
+
+block content
+  div.container.pt-5
+    h1.display-2 Your JWT
+    p.lead Here is your JSON Web Token
+    p.text-break.text-monospace.p-4.bg-light #{id_token}
+    a.btn.btn-primary.btn-lg(href='/', role='button') Go back
