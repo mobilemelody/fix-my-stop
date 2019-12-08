@@ -1,0 +1,5399 @@
+{
+	"info": {
+		"_postman_id": "9815eb92-076f-4075-876d-eca68f219cad",
+		"name": "CS 493 Project",
+		"description": "This collection tests the specification created for the Fix My Stop API.\n\nIn order to run this collection, you need an environment which has the following 4 environment variables pre-defined:\n\n- **app_url:** Set this to your app. E.g., when running locally set it to http://localhost:8080. When running the app on GCP set it to https://fix-my-stop.appspot.com\n\n- **invalid_id:** Set it to a value that's not an ID of any entity in your project (e.g., 1).\n\n- **token:** Set this to a valid JWT token. To obtain a token, go to https://fix-my-stop.appspot.com and authorize using a Google account\n\n- **token_1:** Set this to another valid JWT token. To obtain a token, go to https://fix-my-stop.appspot.com and authorize using a *different* Google account than the one used for the previous token",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "add stop 201",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "57e2e0aa-c320-49d4-8571-48bbfb933551",
+						"exec": [
+							"pm.environment.set(\"stop_id\", pm.response.json()[\"id\"]);",
+							"",
+							"pm.test(\"201 status code\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Gilman St & San Pablo Av\",\n\t\"lat\": 37.8803386,\n\t\"lon\": -122.2966763,\n\t\"ridership\": 200\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/stops",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"stops"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add stop_1 201",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "57e2e0aa-c320-49d4-8571-48bbfb933551",
+						"exec": [
+							"pm.environment.set(\"stop_id_1\", pm.response.json()[\"id\"]);",
+							"",
+							"pm.test(\"201 status code\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"San Pablo Av & Solano Av\",\n\t\"lat\": 37.8901971,\n\t\"lon\": -122.2987309\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/stops",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"stops"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add stop_2 201",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "57e2e0aa-c320-49d4-8571-48bbfb933551",
+						"exec": [
+							"pm.environment.set(\"stop_id_2\", pm.response.json()[\"id\"]);",
+							"",
+							"pm.test(\"201 status code\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"University Av & Sacramento St\",\n\t\"lat\": 37.8702406,\n\t\"lon\": -122.2821521,\n\t\"ridership\": 570\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/stops",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"stops"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add stop_3 201",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "57e2e0aa-c320-49d4-8571-48bbfb933551",
+						"exec": [
+							"pm.environment.set(\"stop_id_3\", pm.response.json()[\"id\"]);",
+							"pm.environment.set(\"user_id_1\", pm.response.json()[\"user\"]);",
+							"",
+							"pm.test(\"201 status code\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Shattuck Av & Allston Way\",\n\t\"lat\": 37.8692529,\n\t\"lon\": -122.2681456,\n\t\"ridership\": 2500\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/stops",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"stops"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add stop_4 201",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "57e2e0aa-c320-49d4-8571-48bbfb933551",
+						"exec": [
+							"pm.environment.set(\"stop_id_4\", pm.response.json()[\"id\"]);",
+							"",
+							"pm.test(\"201 status code\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"College Av & Ashby Av\",\n\t\"lat\": 37.8570558,\n\t\"lon\": -122.2541928,\n\t\"ridership\": 700\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/stops",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"stops"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add stop_5 201",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "57e2e0aa-c320-49d4-8571-48bbfb933551",
+						"exec": [
+							"pm.environment.set(\"stop_id_5\", pm.response.json()[\"id\"]);",
+							"",
+							"pm.test(\"201 status code\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"San Pablo Av & Ashby Av\",\n\t\"lat\": 37.8521658,\n\t\"lon\": -122.2874254,\n\t\"ridership\": 1500\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/stops",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"stops"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add stop 400",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "57e2e0aa-c320-49d4-8571-48bbfb933551",
+						"exec": [
+							"pm.test(\"400 status code\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Gilman St & San Pablo Av\",\n\t\"lat\": 37.8803386\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/stops",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"stops"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add stop 405",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "57e2e0aa-c320-49d4-8571-48bbfb933551",
+						"exec": [
+							"pm.test(\"405 status code\", function () {",
+							"    pm.response.to.have.status(405);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Gilman St & San Pablo Av\",\n\t\"lat\": 37.8803386\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/stops/{{stop_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"stops",
+						"{{stop_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add stop 406",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "57e2e0aa-c320-49d4-8571-48bbfb933551",
+						"exec": [
+							"pm.test(\"406 status code\", function () {",
+							"    pm.response.to.have.status(406);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "text/html",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Gilman St & San Pablo Av\",\n\t\"lat\": 37.8803386,\n\t\"lon\": -122.2966763,\n\t\"ridership\": 200\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/stops",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"stops"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get stop 200",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c067bdf5-2b98-47b3-9c22-4f672351fa7d",
+						"exec": [
+							"pm.test(\"200 status code\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{app_url}}/stops/{{stop_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"stops",
+						"{{stop_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get stop 404",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c067bdf5-2b98-47b3-9c22-4f672351fa7d",
+						"exec": [
+							"pm.test(\"404 status code\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{app_url}}/stops/{{invalid_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"stops",
+						"{{invalid_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get stop 406",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c067bdf5-2b98-47b3-9c22-4f672351fa7d",
+						"exec": [
+							"pm.test(\"406 status code\", function () {",
+							"    pm.response.to.have.status(406);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "text/html"
+					}
+				],
+				"url": {
+					"raw": "{{app_url}}/stops/{{stop_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"stops",
+						"{{stop_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "list first 5 stops 200",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a99cc129-5611-4d9e-9906-766b42ee2276",
+						"exec": [
+							"pm.environment.set(\"next_url\", pm.response.json()[\"next\"]);",
+							"",
+							"pm.test(\"200 status code\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Number of records returned is 5\", function() {",
+							"    let numRecords = pm.response.json()[\"results\"].length;",
+							"    pm.expect(numRecords).to.equal(5);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{app_url}}/stops",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"stops"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "list next stops 200",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a99cc129-5611-4d9e-9906-766b42ee2276",
+						"exec": [
+							"pm.test(\"200 status code\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Number of records returned is at least 1\", function() {",
+							"    let numRecords = pm.response.json()[\"results\"].length;",
+							"    pm.expect(numRecords).to.be.at.least(1);",
+							"});",
+							"",
+							"pm.test(\"Number of records returned is at most 5\", function() {",
+							"    let numRecords = pm.response.json()[\"results\"].length;",
+							"    pm.expect(numRecords).to.be.at.most(5);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{next_url}}",
+					"host": [
+						"{{next_url}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "list stops 404",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a99cc129-5611-4d9e-9906-766b42ee2276",
+						"exec": [
+							"pm.test(\"404 status code\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{app_url}}/stops?cursor={{invalid_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"stops"
+					],
+					"query": [
+						{
+							"key": "cursor",
+							"value": "{{invalid_id}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "list stops 406",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a99cc129-5611-4d9e-9906-766b42ee2276",
+						"exec": [
+							"pm.test(\"406 status code\", function () {",
+							"    pm.response.to.have.status(406);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "text/html"
+					}
+				],
+				"url": {
+					"raw": "{{app_url}}/stops",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"stops"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "replace stop 201",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a99cc129-5611-4d9e-9906-766b42ee2276",
+						"exec": [
+							"pm.test(\"201 status code\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Gilman St & 7th St\",\n\t\"lat\": 37.8797469,\n\t\"lon\": -122.2997233\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/stops/{{stop_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"stops",
+						"{{stop_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "replace stop 400",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a99cc129-5611-4d9e-9906-766b42ee2276",
+						"exec": [
+							"pm.test(\"400 status code\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Gilman St & 7th St\",\n\t\"lat\": 37.8797469\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/stops/{{stop_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"stops",
+						"{{stop_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "replace stop 404",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a99cc129-5611-4d9e-9906-766b42ee2276",
+						"exec": [
+							"pm.test(\"404 status code\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Gilman St & 7th St\",\n\t\"lat\": 37.8797469,\n\t\"lon\": -122.2997233\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/stops/{{invalid_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"stops",
+						"{{invalid_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "replace stop 405",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a99cc129-5611-4d9e-9906-766b42ee2276",
+						"exec": [
+							"pm.test(\"405 status code\", function () {",
+							"    pm.response.to.have.status(405);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Gilman St & 7th St\",\n\t\"lat\": 37.8797469,\n\t\"lon\": -122.2997233\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/stops",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"stops"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "replace stop 406",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a99cc129-5611-4d9e-9906-766b42ee2276",
+						"exec": [
+							"pm.test(\"406 status code\", function () {",
+							"    pm.response.to.have.status(406);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "text/html"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Gilman St & 7th St\",\n\t\"lat\": 37.8797469,\n\t\"lon\": -122.2997233\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/stops/{{stop_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"stops",
+						"{{stop_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update stop 200",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a99cc129-5611-4d9e-9906-766b42ee2276",
+						"exec": [
+							"pm.test(\"200 status code\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Gilman St & Seventh St\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/stops/{{stop_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"stops",
+						"{{stop_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update stop 404",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a99cc129-5611-4d9e-9906-766b42ee2276",
+						"exec": [
+							"pm.test(\"404 status code\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Gilman St & Seventh St\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/stops/{{invalid_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"stops",
+						"{{invalid_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update stop 405",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a99cc129-5611-4d9e-9906-766b42ee2276",
+						"exec": [
+							"pm.test(\"405 status code\", function () {",
+							"    pm.response.to.have.status(405);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Gilman St & Seventh St\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/stops",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"stops"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update stop 406",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a99cc129-5611-4d9e-9906-766b42ee2276",
+						"exec": [
+							"pm.test(\"406 status code\", function () {",
+							"    pm.response.to.have.status(406);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "text/html"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Gilman St & Seventh St\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/stops/{{stop_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"stops",
+						"{{stop_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add issue 201",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "57e2e0aa-c320-49d4-8571-48bbfb933551",
+						"exec": [
+							"pm.environment.set(\"issue_id\", pm.response.json()[\"id\"]);",
+							"pm.environment.set(\"user_id\", pm.response.json()[\"user\"]);",
+							"",
+							"pm.test(\"201 status code\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"priority\": 3,\n\t\"description\": \"Trash can needs to be emptied\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/issues",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"issues"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add issue_1 201",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "57e2e0aa-c320-49d4-8571-48bbfb933551",
+						"exec": [
+							"pm.environment.set(\"issue_id_1\", pm.response.json()[\"id\"]);",
+							"",
+							"pm.test(\"201 status code\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"priority\": 2,\n\t\"description\": \"Schedule information is incorrect\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/issues",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"issues"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add issue_2 201",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "57e2e0aa-c320-49d4-8571-48bbfb933551",
+						"exec": [
+							"pm.environment.set(\"issue_id_2\", pm.response.json()[\"id\"]);",
+							"",
+							"pm.test(\"201 status code\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"priority\": 4,\n\t\"description\": \"Bench needs to be replaced\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/issues",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"issues"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add issue_3 user_1 201",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "57e2e0aa-c320-49d4-8571-48bbfb933551",
+						"exec": [
+							"pm.environment.set(\"issue_id_3\", pm.response.json()[\"id\"]);",
+							"",
+							"pm.test(\"201 status code\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token_1}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"priority\": 1,\n\t\"description\": \"Bus stop pole knocked down\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/issues",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"issues"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add issue_4 201",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "57e2e0aa-c320-49d4-8571-48bbfb933551",
+						"exec": [
+							"pm.environment.set(\"issue_id_4\", pm.response.json()[\"id\"]);",
+							"",
+							"pm.test(\"201 status code\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"priority\": 2,\n\t\"description\": \"Real-time information sign not working\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/issues",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"issues"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add issue_5 user_1 201",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "57e2e0aa-c320-49d4-8571-48bbfb933551",
+						"exec": [
+							"pm.environment.set(\"issue_id_5\", pm.response.json()[\"id\"]);",
+							"",
+							"pm.test(\"201 status code\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token_1}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"priority\": 3,\n\t\"description\": \"Tree needs to be trimmed back\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/issues",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"issues"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add issue 400",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "57e2e0aa-c320-49d4-8571-48bbfb933551",
+						"exec": [
+							"pm.test(\"400 status code\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"priority\": 3\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/issues",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"issues"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add issue 401",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "57e2e0aa-c320-49d4-8571-48bbfb933551",
+						"exec": [
+							"pm.test(\"401 status code\", function () {",
+							"    pm.response.to.have.status(401);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"priority\": 3,\n\t\"description\": \"Trash can needs to be emptied\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/issues",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"issues"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add issue 405",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "57e2e0aa-c320-49d4-8571-48bbfb933551",
+						"exec": [
+							"pm.test(\"405 status code\", function () {",
+							"    pm.response.to.have.status(405);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"priority\": 3,\n\t\"description\": \"Trash can needs to be emptied\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/issues/{{issue_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"issues",
+						"{{issue_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add issue 406",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "57e2e0aa-c320-49d4-8571-48bbfb933551",
+						"exec": [
+							"pm.test(\"406 status code\", function () {",
+							"    pm.response.to.have.status(406);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "text/html",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"priority\": 3,\n\t\"description\": \"Trash can needs to be emptied\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/issues",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"issues"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get issue 200",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c067bdf5-2b98-47b3-9c22-4f672351fa7d",
+						"exec": [
+							"pm.test(\"200 status code\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{app_url}}/issues/{{issue_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"issues",
+						"{{issue_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get issue 404",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c067bdf5-2b98-47b3-9c22-4f672351fa7d",
+						"exec": [
+							"pm.test(\"404 status code\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{app_url}}/issues/{{invalid_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"issues",
+						"{{invalid_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get issue 406",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c067bdf5-2b98-47b3-9c22-4f672351fa7d",
+						"exec": [
+							"pm.test(\"406 status code\", function () {",
+							"    pm.response.to.have.status(406);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "text/html"
+					}
+				],
+				"url": {
+					"raw": "{{app_url}}/issues/{{issue_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"issues",
+						"{{issue_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "list first 5 issues 200",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a99cc129-5611-4d9e-9906-766b42ee2276",
+						"exec": [
+							"pm.environment.set(\"next_url\", pm.response.json()[\"next\"]);",
+							"",
+							"pm.test(\"200 status code\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Number of records returned is 5\", function() {",
+							"    let numRecords = pm.response.json()[\"results\"].length;",
+							"    pm.expect(numRecords).to.equal(5);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{app_url}}/issues",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"issues"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "list next issues 200",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a99cc129-5611-4d9e-9906-766b42ee2276",
+						"exec": [
+							"pm.test(\"200 status code\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Number of records returned is at least 1\", function() {",
+							"    let numRecords = pm.response.json()[\"results\"].length;",
+							"    pm.expect(numRecords).to.be.at.least(1);",
+							"});",
+							"",
+							"pm.test(\"Number of records returned is at most 5\", function() {",
+							"    let numRecords = pm.response.json()[\"results\"].length;",
+							"    pm.expect(numRecords).to.be.at.most(5);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{next_url}}",
+					"host": [
+						"{{next_url}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "list issues 404",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a99cc129-5611-4d9e-9906-766b42ee2276",
+						"exec": [
+							"pm.test(\"404 status code\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{app_url}}/issues?cursor={{invalid_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"issues"
+					],
+					"query": [
+						{
+							"key": "cursor",
+							"value": "{{invalid_id}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "list issues 406",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a99cc129-5611-4d9e-9906-766b42ee2276",
+						"exec": [
+							"pm.test(\"406 status code\", function () {",
+							"    pm.response.to.have.status(406);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "text/html"
+					}
+				],
+				"url": {
+					"raw": "{{app_url}}/issues",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"issues"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "list user issues 200",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a99cc129-5611-4d9e-9906-766b42ee2276",
+						"exec": [
+							"pm.test(\"200 status code\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{app_url}}/users/{{user_id}}/issues",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"users",
+						"{{user_id}}",
+						"issues"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "list user issues 401",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a99cc129-5611-4d9e-9906-766b42ee2276",
+						"exec": [
+							"pm.test(\"401 status code\", function () {",
+							"    pm.response.to.have.status(401);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{app_url}}/users/{{user_id}}/issues",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"users",
+						"{{user_id}}",
+						"issues"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "list user issues 403",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a99cc129-5611-4d9e-9906-766b42ee2276",
+						"exec": [
+							"pm.test(\"403 status code\", function () {",
+							"    pm.response.to.have.status(403);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token_1}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{app_url}}/users/{{user_id}}/issues",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"users",
+						"{{user_id}}",
+						"issues"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "list user issues 404",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a99cc129-5611-4d9e-9906-766b42ee2276",
+						"exec": [
+							"pm.test(\"404 status code\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{app_url}}/users/{{user_id}}/issues?cursor={{invalid_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"users",
+						"{{user_id}}",
+						"issues"
+					],
+					"query": [
+						{
+							"key": "cursor",
+							"value": "{{invalid_id}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "list user issues 406",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a99cc129-5611-4d9e-9906-766b42ee2276",
+						"exec": [
+							"pm.test(\"406 status code\", function () {",
+							"    pm.response.to.have.status(406);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "text/html"
+					}
+				],
+				"url": {
+					"raw": "{{app_url}}/users/{{user_id}}/issues",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"users",
+						"{{user_id}}",
+						"issues"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "post user issues 405",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a99cc129-5611-4d9e-9906-766b42ee2276",
+						"exec": [
+							"pm.test(\"405 status code\", function () {",
+							"    pm.response.to.have.status(405);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{app_url}}/users/{{user_id}}/issues",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"users",
+						"{{user_id}}",
+						"issues"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "put user issues 405",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a99cc129-5611-4d9e-9906-766b42ee2276",
+						"exec": [
+							"pm.test(\"405 status code\", function () {",
+							"    pm.response.to.have.status(405);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{app_url}}/users/{{user_id}}/issues",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"users",
+						"{{user_id}}",
+						"issues"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "patch user issues 405",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a99cc129-5611-4d9e-9906-766b42ee2276",
+						"exec": [
+							"pm.test(\"405 status code\", function () {",
+							"    pm.response.to.have.status(405);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{app_url}}/users/{{user_id}}/issues",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"users",
+						"{{user_id}}",
+						"issues"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete user issues 405",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a99cc129-5611-4d9e-9906-766b42ee2276",
+						"exec": [
+							"pm.test(\"405 status code\", function () {",
+							"    pm.response.to.have.status(405);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{app_url}}/users/{{user_id}}/issues",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"users",
+						"{{user_id}}",
+						"issues"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "replace issue 201",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a99cc129-5611-4d9e-9906-766b42ee2276",
+						"exec": [
+							"pm.test(\"201 status code\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"priority\": 4,\n\t\"description\": \"Graffiti on bus stop sign\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/issues/{{issue_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"issues",
+						"{{issue_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "replace issue 400",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a99cc129-5611-4d9e-9906-766b42ee2276",
+						"exec": [
+							"pm.test(\"400 status code\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"priority\": 4\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/issues/{{issue_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"issues",
+						"{{issue_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "replace issue 401",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a99cc129-5611-4d9e-9906-766b42ee2276",
+						"exec": [
+							"pm.test(\"401 status code\", function () {",
+							"    pm.response.to.have.status(401);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"priority\": 4,\n\t\"description\": \"Graffiti on bus stop sign\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/issues/{{issue_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"issues",
+						"{{issue_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "replace issue 403",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a99cc129-5611-4d9e-9906-766b42ee2276",
+						"exec": [
+							"pm.test(\"403 status code\", function () {",
+							"    pm.response.to.have.status(403);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token_1}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"priority\": 4,\n\t\"description\": \"Graffiti on bus stop sign\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/issues/{{issue_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"issues",
+						"{{issue_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "replace issue 404",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a99cc129-5611-4d9e-9906-766b42ee2276",
+						"exec": [
+							"pm.test(\"404 status code\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"priority\": 4,\n\t\"description\": \"Graffiti on bus stop sign\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/issues/{{invalid_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"issues",
+						"{{invalid_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "replace issue 405",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a99cc129-5611-4d9e-9906-766b42ee2276",
+						"exec": [
+							"pm.test(\"405 status code\", function () {",
+							"    pm.response.to.have.status(405);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"priority\": 4,\n\t\"description\": \"Graffiti on bus stop sign\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/issues",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"issues"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "replace issue 406",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a99cc129-5611-4d9e-9906-766b42ee2276",
+						"exec": [
+							"pm.test(\"406 status code\", function () {",
+							"    pm.response.to.have.status(406);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "text/html",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"priority\": 4,\n\t\"description\": \"Graffiti on bus stop sign\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/issues/{{issue_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"issues",
+						"{{issue_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update issue 200",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a99cc129-5611-4d9e-9906-766b42ee2276",
+						"exec": [
+							"pm.test(\"200 status code\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"priority\": 2\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/issues/{{issue_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"issues",
+						"{{issue_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update issue 401",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a99cc129-5611-4d9e-9906-766b42ee2276",
+						"exec": [
+							"pm.test(\"401 status code\", function () {",
+							"    pm.response.to.have.status(401);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"priority\": 2\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/issues/{{issue_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"issues",
+						"{{issue_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update issue 403",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a99cc129-5611-4d9e-9906-766b42ee2276",
+						"exec": [
+							"pm.test(\"403 status code\", function () {",
+							"    pm.response.to.have.status(403);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token_1}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"priority\": 2\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/issues/{{issue_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"issues",
+						"{{issue_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update issue 404",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a99cc129-5611-4d9e-9906-766b42ee2276",
+						"exec": [
+							"pm.test(\"404 status code\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"priority\": 2\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/issues/{{invalid_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"issues",
+						"{{invalid_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update issue 405",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a99cc129-5611-4d9e-9906-766b42ee2276",
+						"exec": [
+							"pm.test(\"405 status code\", function () {",
+							"    pm.response.to.have.status(405);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"priority\": 2\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/issues",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"issues"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update issue 406",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a99cc129-5611-4d9e-9906-766b42ee2276",
+						"exec": [
+							"pm.test(\"200 status code\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"priority\": 2\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/issues/{{issue_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"issues",
+						"{{issue_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add stop to all issues 405",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a99cc129-5611-4d9e-9906-766b42ee2276",
+						"exec": [
+							"pm.test(\"405 status code\", function () {",
+							"    pm.response.to.have.status(405);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/stops/{{stop_id}}/issues",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"stops",
+						"{{stop_id}}",
+						"issues"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add stop to issue 405",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a99cc129-5611-4d9e-9906-766b42ee2276",
+						"exec": [
+							"pm.test(\"405 status code\", function () {",
+							"    pm.response.to.have.status(405);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/stops/{{stop_id}}/issues/{{issue_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"stops",
+						"{{stop_id}}",
+						"issues",
+						"{{issue_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add stop to all issues 405",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a99cc129-5611-4d9e-9906-766b42ee2276",
+						"exec": [
+							"pm.test(\"405 status code\", function () {",
+							"    pm.response.to.have.status(405);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/stops/{{stop_id}}/issues",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"stops",
+						"{{stop_id}}",
+						"issues"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add stop to issue 405",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a99cc129-5611-4d9e-9906-766b42ee2276",
+						"exec": [
+							"pm.test(\"405 status code\", function () {",
+							"    pm.response.to.have.status(405);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/stops/{{stop_id}}/issues/{{issue_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"stops",
+						"{{stop_id}}",
+						"issues",
+						"{{issue_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add stop to issue 204",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a99cc129-5611-4d9e-9906-766b42ee2276",
+						"exec": [
+							"pm.test(\"204 status code\", function () {",
+							"    pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/stops/{{stop_id}}/issues/{{issue_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"stops",
+						"{{stop_id}}",
+						"issues",
+						"{{issue_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add stop to issue 400",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a99cc129-5611-4d9e-9906-766b42ee2276",
+						"exec": [
+							"pm.test(\"400 status code\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/stops/{{stop_id_1}}/issues/{{issue_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"stops",
+						"{{stop_id_1}}",
+						"issues",
+						"{{issue_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add stop to issue 401",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a99cc129-5611-4d9e-9906-766b42ee2276",
+						"exec": [
+							"pm.test(\"401 status code\", function () {",
+							"    pm.response.to.have.status(401);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/stops/{{stop_id}}/issues/{{issue_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"stops",
+						"{{stop_id}}",
+						"issues",
+						"{{issue_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add stop to issue 403",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a99cc129-5611-4d9e-9906-766b42ee2276",
+						"exec": [
+							"pm.test(\"403 status code\", function () {",
+							"    pm.response.to.have.status(403);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token_1}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/stops/{{stop_id}}/issues/{{issue_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"stops",
+						"{{stop_id}}",
+						"issues",
+						"{{issue_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add stop to issue 404",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a99cc129-5611-4d9e-9906-766b42ee2276",
+						"exec": [
+							"pm.test(\"404 status code\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/stops/{{stop_id}}/issues/{{invalid_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"stops",
+						"{{stop_id}}",
+						"issues",
+						"{{invalid_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add stop to issue 404",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a99cc129-5611-4d9e-9906-766b42ee2276",
+						"exec": [
+							"pm.test(\"404 status code\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/stops/{{invalid_id}}/issues/{{issue_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"stops",
+						"{{invalid_id}}",
+						"issues",
+						"{{issue_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add stop to issue 405",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a99cc129-5611-4d9e-9906-766b42ee2276",
+						"exec": [
+							"pm.test(\"405 status code\", function () {",
+							"    pm.response.to.have.status(405 );",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/stops/{{stop_id}}/issues",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"stops",
+						"{{stop_id}}",
+						"issues"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add stop to issue_1 204",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a99cc129-5611-4d9e-9906-766b42ee2276",
+						"exec": [
+							"pm.test(\"204 status code\", function () {",
+							"    pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/stops/{{stop_id}}/issues/{{issue_id_1}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"stops",
+						"{{stop_id}}",
+						"issues",
+						"{{issue_id_1}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add stop to issue_3 204",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a99cc129-5611-4d9e-9906-766b42ee2276",
+						"exec": [
+							"pm.test(\"204 status code\", function () {",
+							"    pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token_1}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/stops/{{stop_id}}/issues/{{issue_id_3}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"stops",
+						"{{stop_id}}",
+						"issues",
+						"{{issue_id_3}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get issues for stop 200",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a99cc129-5611-4d9e-9906-766b42ee2276",
+						"exec": [
+							"pm.test(\"200 status code\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/stops/{{stop_id}}/issues",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"stops",
+						"{{stop_id}}",
+						"issues"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get issues for stop 404",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a99cc129-5611-4d9e-9906-766b42ee2276",
+						"exec": [
+							"pm.test(\"404 status code\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/stops/{{invalid_id}}/issues",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"stops",
+						"{{invalid_id}}",
+						"issues"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get issues for stop 405",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a99cc129-5611-4d9e-9906-766b42ee2276",
+						"exec": [
+							"pm.test(\"405 status code\", function () {",
+							"    pm.response.to.have.status(405);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/stops/{{stop_id}}/issues/{{issue_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"stops",
+						"{{stop_id}}",
+						"issues",
+						"{{issue_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get issues for stop 406",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a99cc129-5611-4d9e-9906-766b42ee2276",
+						"exec": [
+							"pm.test(\"406 status code\", function () {",
+							"    pm.response.to.have.status(406);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "text/html",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/stops/{{stop_id}}/issues",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"stops",
+						"{{stop_id}}",
+						"issues"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "remove stop from issue 204",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a99cc129-5611-4d9e-9906-766b42ee2276",
+						"exec": [
+							"pm.test(\"204 status code\", function () {",
+							"    pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/stops/{{stop_id}}/issues/{{issue_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"stops",
+						"{{stop_id}}",
+						"issues",
+						"{{issue_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "remove stop from issue_1 401",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a99cc129-5611-4d9e-9906-766b42ee2276",
+						"exec": [
+							"pm.test(\"401 status code\", function () {",
+							"    pm.response.to.have.status(401);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/stops/{{stop_id}}/issues/{{issue_id_1}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"stops",
+						"{{stop_id}}",
+						"issues",
+						"{{issue_id_1}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "remove stop from issue_1 403",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a99cc129-5611-4d9e-9906-766b42ee2276",
+						"exec": [
+							"pm.test(\"403 status code\", function () {",
+							"    pm.response.to.have.status(403);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token_1}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/stops/{{stop_id}}/issues/{{issue_id_1}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"stops",
+						"{{stop_id}}",
+						"issues",
+						"{{issue_id_1}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "remove stop_1 from issue 404",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a99cc129-5611-4d9e-9906-766b42ee2276",
+						"exec": [
+							"pm.test(\"404 status code\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/stops/{{stop_id_1}}/issues/{{issue_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"stops",
+						"{{stop_id_1}}",
+						"issues",
+						"{{issue_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "remove stop from issue 405",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a99cc129-5611-4d9e-9906-766b42ee2276",
+						"exec": [
+							"pm.test(\"405 status code\", function () {",
+							"    pm.response.to.have.status(405);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/stops/{{stop_id}}/issues",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"stops",
+						"{{stop_id}}",
+						"issues"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete stop 204",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a99cc129-5611-4d9e-9906-766b42ee2276",
+						"exec": [
+							"pm.test(\"204 status code\", function () {",
+							"    pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/stops/{{stop_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"stops",
+						"{{stop_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get issue_1 no stop 200",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c067bdf5-2b98-47b3-9c22-4f672351fa7d",
+						"exec": [
+							"pm.test(\"200 status code\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"stop set to null\", function() {",
+							"    pm.expect(pm.response.json().stop).to.be.null;",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{app_url}}/issues/{{issue_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"issues",
+						"{{issue_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete stop 404",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a99cc129-5611-4d9e-9906-766b42ee2276",
+						"exec": [
+							"pm.test(\"404 status code\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/stops/{{invalid_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"stops",
+						"{{invalid_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete stop 405",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a99cc129-5611-4d9e-9906-766b42ee2276",
+						"exec": [
+							"pm.test(\"405 status code\", function () {",
+							"    pm.response.to.have.status(405);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/stops",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"stops"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete issue 401",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a99cc129-5611-4d9e-9906-766b42ee2276",
+						"exec": [
+							"pm.test(\"401 status code\", function () {",
+							"    pm.response.to.have.status(401);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/issues/{{issue_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"issues",
+						"{{issue_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete issue 403",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a99cc129-5611-4d9e-9906-766b42ee2276",
+						"exec": [
+							"pm.test(\"403 status code\", function () {",
+							"    pm.response.to.have.status(403);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token_1}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/issues/{{issue_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"issues",
+						"{{issue_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete issue 204",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a99cc129-5611-4d9e-9906-766b42ee2276",
+						"exec": [
+							"pm.test(\"204 status code\", function () {",
+							"    pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/issues/{{issue_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"issues",
+						"{{issue_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete issue 404",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a99cc129-5611-4d9e-9906-766b42ee2276",
+						"exec": [
+							"pm.test(\"404 status code\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/issues/{{invalid_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"issues",
+						"{{invalid_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete issue_1 204",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a99cc129-5611-4d9e-9906-766b42ee2276",
+						"exec": [
+							"pm.test(\"204 status code\", function () {",
+							"    pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/issues/{{issue_id_1}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"issues",
+						"{{issue_id_1}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete issue_2 204",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a99cc129-5611-4d9e-9906-766b42ee2276",
+						"exec": [
+							"pm.test(\"204 status code\", function () {",
+							"    pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/issues/{{issue_id_2}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"issues",
+						"{{issue_id_2}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete issue_3 user_1 204",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a99cc129-5611-4d9e-9906-766b42ee2276",
+						"exec": [
+							"pm.test(\"204 status code\", function () {",
+							"    pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token_1}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/issues/{{issue_id_3}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"issues",
+						"{{issue_id_3}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete issue_4 204",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a99cc129-5611-4d9e-9906-766b42ee2276",
+						"exec": [
+							"pm.test(\"204 status code\", function () {",
+							"    pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/issues/{{issue_id_4}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"issues",
+						"{{issue_id_4}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete issue_5 user_1 204",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a99cc129-5611-4d9e-9906-766b42ee2276",
+						"exec": [
+							"pm.test(\"204 status code\", function () {",
+							"    pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token_1}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/issues/{{issue_id_5}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"issues",
+						"{{issue_id_5}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete stop_1 204",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a99cc129-5611-4d9e-9906-766b42ee2276",
+						"exec": [
+							"pm.test(\"204 status code\", function () {",
+							"    pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/stops/{{stop_id_1}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"stops",
+						"{{stop_id_1}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete stop_2 204",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a99cc129-5611-4d9e-9906-766b42ee2276",
+						"exec": [
+							"pm.test(\"204 status code\", function () {",
+							"    pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/stops/{{stop_id_2}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"stops",
+						"{{stop_id_2}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete stop_3 204",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a99cc129-5611-4d9e-9906-766b42ee2276",
+						"exec": [
+							"pm.test(\"204 status code\", function () {",
+							"    pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/stops/{{stop_id_3}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"stops",
+						"{{stop_id_3}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete stop_4 204",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a99cc129-5611-4d9e-9906-766b42ee2276",
+						"exec": [
+							"pm.test(\"204 status code\", function () {",
+							"    pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/stops/{{stop_id_4}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"stops",
+						"{{stop_id_4}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete stop_5 204",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a99cc129-5611-4d9e-9906-766b42ee2276",
+						"exec": [
+							"pm.test(\"204 status code\", function () {",
+							"    pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{app_url}}/stops/{{stop_id_5}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"stops",
+						"{{stop_id_5}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

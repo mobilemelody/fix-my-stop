@@ -132,7 +132,7 @@ app.get('/stops', (req, res, next) => {
 					"total_items": total 
 				};
 				if (nextId) {
-					response.next = req.protocol + '://' + req.headers.host + '/stops?cursor=' + nextId;
+					response.next = req.protocol + '://' + req.headers.host + '/stops?cursor=' + encodeURIComponent(nextId);
 				}
 				res.status(200)
 					.set({ "Content-Type": "application/json" })
@@ -348,7 +348,7 @@ app.get('/issues', (req, res, next) => {
 					"total_items": total 
 				};
 				if (nextId) {
-					response.next = req.protocol + '://' + req.headers.host + '/issues?cursor=' + nextId;
+					response.next = req.protocol + '://' + req.headers.host + '/issues?cursor=' + encodeURIComponent(nextId);
 				}
 				res.status(200)
 					.set({ "Content-Type": "application/json" })
