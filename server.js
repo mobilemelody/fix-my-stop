@@ -4,6 +4,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const {OAuth2Client} = require('google-auth-library');
 const session = require('express-session');
+const jwtDecode = require('jwt-decode');
 const model = require('./model');
 const pug = require('pug');
 const app = express();
@@ -50,7 +51,10 @@ app.get('/auth', (req, res) => {
 
 app.get('/user', (req, res) => {
 	let data = { 'id_token': req.session.id_token };
-	res.render('user', data);
+	let sub = jwtDecode(data.id_token).sub;
+	model.createUser(sub, () => {
+		res.render('user', data);
+	});
 });
 
 async function verify(req, res, next) {

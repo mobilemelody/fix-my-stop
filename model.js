@@ -102,6 +102,28 @@ function getCount(kind, cb) {
 }
 
 /* 
+ * USER CRUD FUNCTIONS
+ */
+
+// Create a user
+function createUser(sub, cb) {
+	let key = ds.key('User');
+
+	// See if user already exists in datastore, save if not
+	let q = ds.createQuery(['User']).filter('sub', '=', sub);
+	ds.runQuery(q, (err, entities) => {
+		if (entities.length > 0) {
+			cb();
+		} else {
+			let data = { "sub": sub };
+			saveEntity(key, data, (err, entity) => {
+				cb();
+			});
+		}
+	});
+}
+
+/* 
  * STOP CRUD FUNCTIONS
  */
 
@@ -516,6 +538,7 @@ function getStopIssues(stopId, cb) {
 
 
 module.exports = {
+	createUser,
 	createStop,
 	listStops,
 	getStop,
