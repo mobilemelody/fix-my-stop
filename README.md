@@ -962,3 +962,187 @@ None (success) or JSON (failure)
   "Error": "No issue with this issue_id exists"
 }
 ```
+
+## Assign a stop to an issue
+Assigns a bus stop to an issue.
+```
+PUT /stops/:stop_id/issues/:issue_id
+```
+### Request
+#### Request Parameters
+| **Name** | **Type** | **Description** | **Required?** |
+| --- | --- | --- | --- |
+| stop\_id | string | ID of the stop | yes |
+| issue\_id | string | ID of the issue | yes |
+
+#### Request Header
+| **Field** | **Description** | **Required?** |
+| --- | --- | --- |
+| Authorization | A JSON Web Token identifying the user | yes |
+
+#### Request Body
+None
+### Response
+#### Response Body Format
+None (success) or JSON (failure)
+#### Response Statuses
+| **Outcome** | **Status Code** | **Reason** |
+| --- | --- | --- |
+| Success | 204 No Content |   |
+| Failure | 400 Bad Request | A stop is already assigned to the issue |
+| Failure | 401 Unauthorized | The request was missing credentials or credentials were invalid. |
+| Failure | 403 Forbidden | The issue does not belong to the user whose credentials were provided |
+| Failure | 404 Not Found | No stop with this stop\_id exists, and/or no issue with this issue\_id exists |
+
+#### Response Examples
+##### Status: 400 Bad Request
+```
+{
+  "Error": "A stop is already assigned to this issue"
+}
+```
+##### Status: 401 Unauthorized
+```
+{
+  "Error": "The request object is missing credentials or supplied credentials are invalid"
+}
+```
+##### Status: 403 Forbidden
+```
+{
+  "Error": "Issue with this issue_id does not belong to this user"
+}
+```
+##### Status: 404 Not Found
+```
+{
+ "Error": The specified stop and/or issue do not exist"
+}
+```
+
+## Remove a stop from an issue
+Removes a stop from an issue. 
+```
+DELETE /stops/:stop_id/issues/:issue_id
+```
+### Request
+#### Request Parameters
+| **Name** | **Type** | **Description** | **Required?** |
+| --- | --- | --- | --- |
+| stop\_id | string | ID of the stop | yes |
+| issue\_id | string | ID of the issue | yes |
+
+#### Request Header
+| **Field** | **Description** | **Required?** |
+| --- | --- | --- |
+| Authorization | A JSON Web Token identifying the user | yes |
+
+#### Request Body
+None
+### Response
+#### Response Body Format
+None (success) or JSON (failure)
+#### Response Statuses
+| **Outcome** | **Status Code** | **Reason** |
+| --- | --- | --- |
+| Success | 204 No Content |   |
+| Failure | 401 Unauthorized | The request was missing credentials or credentials were invalid. |
+| Failure | 403 Forbidden | The issue does not belong to the user whose credentials were provided |
+| Failure | 404 Not Found | No stop with this stop\_id is assigned to an issue with this issue\_id |
+
+#### Response Examples
+##### Status: 401 Unauthorized
+```
+{
+  "Error": "The request object is missing credentials or supplied credentials are invalid"
+}
+```
+##### Status: 403 Forbidden
+```
+{
+  "Error": "Issue with this issue_id does not belong to this user"
+}
+```
+##### Status: 404 Not Found
+```
+{
+  "Error": "No stop with this stop_id is assigned to an issue with this issue_id"
+}
+```
+
+## View all issues for a stop
+Lists all the issues associated with a given stop.
+```
+GET /stops/:stop_id/issues
+```
+### Request
+#### Request Parameters
+| **Name** | **Type** | **Description** | **Required?** |
+| --- | --- | --- | --- |
+| stop\_id | string | ID of the stop | yes |
+
+#### Request Header
+| **Field** | **Description** | **Required?** |
+| --- | --- | --- |
+| Accept | The format of the content to be returned. Must be **application/json**. | yes |
+
+#### Request Body
+None
+### Response
+#### Response Body Format
+JSON
+#### Response Statuses
+| **Outcome** | **Status Code** | **Reason** |
+| --- | --- | --- |
+| Success | 200 OK |   |
+| Failure | 404 Not Found | No stop with this stop\_id exists |
+| Failure | 406 Not Acceptable | Requested content format is not supported or was not provided |
+
+#### Response Examples
+##### Status: 200 OK
+```
+{
+  "results": [
+  {
+    "id": "123abc",
+    "date": "11/23/2019",
+    "priority": 3,
+    "description": "Trash can needs to be emptied",
+    "stop": {
+      "id": "abc123",
+      "self": "https://<your-app>/stops/abc123"
+    },
+    "user": "a123456"
+    "self": "https://<your-app>/issues/123abc"
+  },
+  {
+    "id": "789ghi",
+    "date": "11/10/2019",
+    "priority": 1,
+    "description": "Bus stop pole knocked over",
+    "stop": {
+      "id": "abc123",
+      "self": "https://<your-app>/stops/abc123"
+    },
+    "user": "b789012"
+    "self": "https://<your-app>/issues/789ghi"
+  },
+ 
+  ...
+  
+  ],
+  "next": "https://<your-app>/stops?cursor=789ghi"
+}
+```
+##### Status: 404 Not Found
+```
+{
+  "Error": "No stop with this stop_id exists"
+}
+```
+##### Status: 406 Not Acceptable
+```
+{
+ "Error": "Requested content format is not supported or was not provided in the request object"
+}
+```
