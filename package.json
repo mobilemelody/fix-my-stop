@@ -21,7 +21,7 @@
     "express-session": "^1.17.0",
     "google-auth-library": "^5.5.1",
     "jwt-decode": "^2.2.0",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "pug": "^2.0.4"
   }
 }
